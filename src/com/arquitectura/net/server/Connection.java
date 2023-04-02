@@ -1,38 +1,29 @@
-package com.arquitectura.net.client;
+package com.arquitectura.net.server;
 
 import java.io.IOException;
-//import java.io.InputStream;
 import java.io.ObjectInputStream;
+//import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 import com.arquitectura.net.AbstractNetRunnable;
 
-public abstract class ClientRunnable extends AbstractNetRunnable{
+public abstract class Connection extends AbstractNetRunnable {
 
-	private String address;
-	private int port;
-	private Socket socket;
-	
-	public ClientRunnable(String address, int port) {
-		this.address = address;
-		this.port = port;
-	}
+	protected Socket socket;
+
+	public Connection(Socket socket) {
+		this.socket = socket;
+	} 
 	
 	@Override
 	public void start() {
-		try {
-			socket = new Socket(address, port);
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-		
-	
+		// TODO Auto-generated method stub
 
+	}
+
+	
+	
 	@Override
 	public void process() {
 		try {
@@ -48,11 +39,10 @@ public abstract class ClientRunnable extends AbstractNetRunnable{
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
 	}
-	
+
 	public abstract void receiveMessage(Object obj);
-	
+
 	public void sendMessage(Object obj) {
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
@@ -65,9 +55,12 @@ public abstract class ClientRunnable extends AbstractNetRunnable{
 	@Override
 	public void stop() {
 		super.stop();
+		
 		try {
-			socket.close();
-		} catch (IOException e) {
+			
+			if (!socket.isClosed())
+				socket.close();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

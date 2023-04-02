@@ -1,7 +1,7 @@
 package com.arquitectura.net;
 
 public abstract class AbstractNetRunnable implements NetRunnable {
-	private boolean running = false;
+	protected boolean running = false;
 
 	@Override
 	public boolean isRunning() {
