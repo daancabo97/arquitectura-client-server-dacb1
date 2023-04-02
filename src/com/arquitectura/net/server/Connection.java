@@ -18,7 +18,7 @@ public abstract class Connection extends AbstractNetRunnable {
 	
 	@Override
 	public void start() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub 
 
 	}
 
