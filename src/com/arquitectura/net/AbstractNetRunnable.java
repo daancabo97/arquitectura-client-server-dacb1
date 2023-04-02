@@ -27,4 +27,9 @@ public abstract class AbstractNetRunnable implements NetRunnable {
 
 	}
 
+	public void receiveMessage(Object obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
